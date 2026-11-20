@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Técnicas de guitarra: pentagrama y tablatura</title>
+<style>
+  :root {
+    --bg: #faf9f6;
+    --card: #ffffff;
+    --fg: #1f1e1c;
+    --muted: #6b6a65;
+    --accent: #c2410c;
+    --accent-bg: #fff1e8;
+    --border: #e4e2dc;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1a18;
+      --card: #242422;
+      --fg: #ecebe6;
+      --muted: #a3a29c;
+      --accent: #fb923c;
+      --accent-bg: #3a2516;
+      --border: #3a3a37;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    line-height: 1.6;
+  }
+  header, main, footer { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  header { padding-top: 40px; padding-bottom: 8px; }
+  h1 { font-size: 30px; font-weight: 600; margin: 0 0 8px; }
+  h2 { font-size: 21px; font-weight: 600; margin: 40px 0 6px; }
+  .lead { color: var(--muted); font-size: 17px; max-width: 760px; margin: 0; }
+  .intro {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px; margin-top: 24px;
+  }
+  .box {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 16px 18px;
+  }
+  .box h3 { margin: 0 0 6px; font-size: 16px; font-weight: 600; }
+  .box p { margin: 0; color: var(--muted); font-size: 15px; }
+  .section-desc { color: var(--muted); margin: 0 0 16px; }
+  .grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 16px;
+  }
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 16px 18px; display: flex; flex-direction: column;
+  }
+  .card h3 { margin: 0; font-size: 17px; font-weight: 600; }
+  .tag {
+    display: inline-block; margin: 6px 0 10px; padding: 2px 10px;
+    border-radius: 999px; background: var(--accent-bg); color: var(--accent);
+    font-size: 13px; font-family: ui-monospace, Menlo, Consolas, monospace;
+  }
+  .card p { margin: 0 0 8px; font-size: 15px; }
+  .card .how { color: var(--muted); }
+  .card .tip { color: var(--muted); font-size: 14px; border-top: 1px dashed var(--border); padding-top: 8px; margin-top: auto; }
+  .card svg { width: 100%; height: auto; margin: 4px 0 10px; }
+  .order { counter-reset: n; list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .order li {
+    counter-increment: n; background: var(--card); border: 1px solid var(--border);
+    border-radius: 999px; padding: 6px 14px; font-size: 14px;
+  }
+  .order li::before { content: counter(n) ". "; color: var(--accent); font-weight: 600; }
+  footer { color: var(--muted); font-size: 13px; padding-top: 40px; padding-bottom: 40px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Técnicas de guitarra</h1>
+  <p class="lead">Cómo se ve cada técnica en pentagrama (arriba) y en tablatura (abajo), qué es y cómo se toca. Los símbolos de cada técnica están marcados en color.</p>
+
+  <div class="intro">
+    <div class="box">
+      <h3>Cómo leer la tablatura</h3>
+      <p>Cada una de las 6 líneas es una cuerda: la de arriba es la 1.ª (Mi agudo) y la de abajo la 6.ª (Mi grave). El número indica qué traste pisar; 0 es la cuerda al aire.</p>
+    </div>
+    <div class="box">
+      <h3>Cómo leer el pentagrama</h3>
+      <p>La guitarra se escribe en clave de sol, pero suena una octava más grave de lo que se lee (por eso a veces la clave lleva un "8" abajo). El pentagrama indica el ritmo con precisión; la tablatura indica dónde tocar.</p>
+    </div>
+    <div class="box">
+      <h3>Sobre los ejemplos</h3>
+      <p>Casi todos están en la 3.ª cuerda (Sol), trastes 5 y 7, para que sea fácil compararlos entre sí.</p>
+    </div>
+  </div>
+</header>
+
+<main>
+  <h2>Ligados y adornos (mano izquierda)</h2>
+  <p class="section-desc">Técnicas que producen notas sin volver a atacar la cuerda con la púa, o que cambian la afinación de una nota.</p>
+  <div class="grid" id="izquierda"></div>
+
+  <h2>Ataque y articulación (mano derecha)</h2>
+  <p class="section-desc">Cómo se ataca, se apaga o se deja sonar la cuerda.</p>
+  <div class="grid" id="derecha"></div>
+
+  <h2>Armónicos y técnicas especiales</h2>
+  <p class="section-desc">Sonidos de campana, chillidos y el uso de la mano derecha sobre el diapasón.</p>
+  <div class="grid" id="especiales"></div>
+
+  <h2>Orden sugerido para aprenderlas</h2>
+  <ol class="order">
+    <li>Dirección de púa</li>
+    <li>Hammer-on y pull-off</li>
+    <li>Slide</li>
+    <li>Palm mute</li>
+    <li>Bend y vibrato</li>
+    <li>Staccato y ghost notes</li>
+    <li>Armónicos naturales</li>
+    <li>Trino</li>
+    <li>Armónicos artificiales y tapping</li>
+  </ol>
+</main>
+
+<footer>Material de apoyo para clases de guitarra.</footer>
+
+<script>
+const P = 'var(--fg)', A = 'var(--accent)', BG = 'var(--card)';
+const sy = p => 56 - p * 4;          // posición vertical en el pentagrama (p = pasos desde Mi4)
+const ty = s => 90 + (s - 1) * 9;    // posición vertical de la cuerda s en la tablatura
+
+function base() {
+  let o = '';
+  for (let i = 0; i < 5; i++) o += `<line x1="22" x2="212" y1="${24 + i * 8}" y2="${24 + i * 8}" stroke="${P}" stroke-width="0.6" opacity=".45"/>`;
+  for (let i = 0; i < 6; i++) o += `<line x1="22" x2="212" y1="${90 + i * 9}" y2="${90 + i * 9}" stroke="${P}" stroke-width="0.6" opacity=".45"/>`;
+  ['T', 'A', 'B'].forEach((c, i) => o += `<text x="13" y="${103 + i * 10}" font-size="10" font-weight="600" text-anchor="middle" fill="var(--muted)">${c}</text>`);
+  return o;
+}
+function N(x, p, t = 'n', o = {}) {
+  const y = sy(p); let s = '';
+  if (t === 'n') s += `<ellipse cx="${x}" cy="${y}" rx="4.8" ry="3.5" transform="rotate(-20 ${x} ${y})" fill="${P}"/>`;
+  if (t === 'd') s += `<polygon points="${x - 5},${y} ${x},${y - 4} ${x + 5},${y} ${x},${y + 4}" fill="none" stroke="${P}" stroke-width="1.2"/>`;
+  if (t === 'x') s += `<path d="M${x - 4} ${y - 4}L${x + 4} ${y + 4}M${x + 4} ${y - 4}L${x - 4} ${y + 4}" stroke="${P}" stroke-width="1.4"/>`;
+  if (o.paren) s += `<text x="${x - 10}" y="${y + 4}" font-size="13" text-anchor="middle" fill="${P}">(</text><text x="${x + 10}" y="${y + 4}" font-size="13" text-anchor="middle" fill="${P}">)</text>`;
+  if (o.stem !== false) {
+    s += p >= 4
+      ? `<line x1="${x - 4.4}" y1="${y + 1}" x2="${x - 4.4}" y2="${y + 26}" stroke="${P}" stroke-width="1"/>`
+      : `<line x1="${x + 4.4}" y1="${y - 1}" x2="${x + 4.4}" y2="${y - 26}" stroke="${P}" stroke-width="1"/>`;
+  }
+  return s;
+}
+function F(x, s, t, c = P) {
+  const w = t.length * 7 + 4;
+  return `<rect x="${x - w / 2}" y="${ty(s) - 7}" width="${w}" height="13" fill="${BG}"/><text x="${x}" y="${ty(s) + 4}" font-size="12" text-anchor="middle" fill="${c}">${t}</text>`;
+}
+function sl(x1, p1, x2, p2) {
+  const y1 = sy(p1) - 6, y2 = sy(p2) - 6, cy = Math.min(y1, y2) - 9;
+  return `<path d="M${x1} ${y1}Q${(x1 + x2) / 2} ${cy} ${x2} ${y2}" fill="none" stroke="${A}" stroke-width="1.2"/>`;
+}
+const T = (x, y, t, an = 'middle', sz = 11) => `<text x="${x}" y="${y}" font-size="${sz}" text-anchor="${an}" fill="${A}">${t}</text>`;
+function W(x1, x2, y) {
+  let d = `M${x1} ${y}`, u = 1;
+  for (let x = x1; x < x2; x += 6) { d += ` q3 ${u ? -3 : 3} 6 0`; u = !u; }
+  return `<path d="${d}" fill="none" stroke="${A}" stroke-width="1.2"/>`;
+}
+const L = (x1, y1, x2, y2, dash) => `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${A}" stroke-width="1.2" ${dash ? 'stroke-dasharray="3 3"' : ''}/>`;
+const up = (x, y) => `<polygon points="${x - 3},${y + 6} ${x},${y} ${x + 3},${y + 6}" fill="${A}"/>`;
+const dn = (x, y) => `<polygon points="${x - 3},${y - 6} ${x},${y} ${x + 3},${y - 6}" fill="${A}"/>`;
+
+const TECNICAS = {
+  izquierda: [
+    { t: 'Hammer-on', tag: 'Tab: 5h7 · Pentagrama: ligadura + H',
+      que: 'Pasar de una nota a otra más aguda en la misma cuerda sin volver a tocar con la púa.',
+      como: 'Toca el traste 5 y, sin atacar de nuevo, "martilla" con fuerza el traste 7 con otro dedo, justo detrás del traste.',
+      tip: 'El dedo debe caer con la punta y con decisión; si cae suave, la nota no suena.',
+      d: N(70, 5) + N(140, 6) + sl(70, 5, 140, 6) + T(105, 12, 'H') + F(70, 3, '5') + F(105, 3, 'h', A) + F(140, 3, '7') },
+    { t: 'Pull-off', tag: 'Tab: 7p5 · Pentagrama: ligadura + P',
+      que: 'Lo contrario del hammer-on: pasar a una nota más grave sin volver a atacar.',
+      como: 'Ten pisados el 5 y el 7. Toca el 7 y retira ese dedo tirando levemente de la cuerda hacia abajo, como si la "pellizcaras", para que suene el 5.',
+      tip: 'No basta con levantar el dedo: hay que tirar un poco de la cuerda para que la nota tenga volumen.',
+      d: N(70, 6) + N(140, 5) + sl(70, 6, 140, 5) + T(105, 12, 'P') + F(70, 3, '7') + F(105, 3, 'p', A) + F(140, 3, '5') },
+    { t: 'Slide ascendente', tag: 'Tab: 5/7 · Pentagrama: línea recta',
+      que: 'Deslizar el dedo de un traste a otro más agudo sin despegarlo de la cuerda.',
+      como: 'Toca el 5 y, manteniendo la presión, desliza el mismo dedo hasta el 7.',
+      tip: 'Mantén la presión constante durante todo el recorrido o la nota se apaga a la mitad.',
+      d: N(70, 5) + N(140, 6) + L(78, sy(5) - 1, 132, sy(6) + 1) + T(105, 16, 'sl.') + F(70, 3, '5') + F(105, 3, '/', A) + F(140, 3, '7') },
+    { t: 'Slide descendente', tag: 'Tab: 7\\5 · Pentagrama: línea recta',
+      que: 'Igual que el anterior, pero deslizando hacia un traste más grave.',
+      como: 'Toca el 7 y desliza el dedo hasta el 5 sin soltar la cuerda.',
+      tip: 'Si en la tab aparece "/7" o "7\\" sin número del otro lado, el slide entra o sale desde un traste indefinido.',
+      d: N(70, 6) + N(140, 5) + L(78, sy(6) + 1, 132, sy(5) - 1) + T(105, 16, 'sl.') + F(70, 3, '7') + F(105, 3, '\\', A) + F(140, 3, '5') },
+    { t: 'Bend (estirada)', tag: 'Tab: flecha + "full" o "1/2"',
+      que: 'Empujar la cuerda hacia un lado para subir la afinación de la nota.',
+      como: 'Pisa el traste 7 y empuja la cuerda hacia arriba (hacia el techo) hasta que suene como el traste 9. "Full" = un tono (2 trastes), "1/2" = medio tono (1 traste).',
+      tip: 'Usa varios dedos juntos para empujar y gira la muñeca, como abriendo una perilla. Compara con la nota real para verificar la afinación.',
+      d: N(70, 6) + N(140, 7, 'n', { paren: true }) + sl(70, 6, 140, 7) + F(70, 3, '7') + `<path d="M78 105Q100 105 100 82" fill="none" stroke="${A}" stroke-width="1.2"/>` + up(100, 80) + T(100, 74, 'full') },
+    { t: 'Bend y release', tag: 'Tab: flecha que sube y baja',
+      que: 'Hacer un bend y luego soltar la cuerda para regresar a la nota original.',
+      como: 'Estira el 7 hasta que suene como el 9 y, sin volver a tocar, deja que la cuerda baje despacio a su posición.',
+      tip: 'Existe también el pre-bend: estirar la cuerda antes de tocarla y luego soltarla.',
+      d: N(60, 6) + N(110, 7, 'n', { paren: true }) + N(165, 6) + sl(60, 6, 110, 7) + sl(110, 7, 165, 6) + F(60, 3, '7') + `<path d="M68 105Q86 105 86 82" fill="none" stroke="${A}" stroke-width="1.2"/>` + up(86, 80) + T(86, 74, 'full') + `<path d="M90 80Q154 80 154 99" fill="none" stroke="${A}" stroke-width="1.2"/>` + dn(154, 101) + F(170, 3, '(7)') },
+    { t: 'Vibrato', tag: 'Tab y pentagrama: ~~~',
+      que: 'Oscilar ligeramente la afinación de una nota sostenida para darle expresión.',
+      como: 'Pisa la nota y haz pequeños bends repetidos (subir y bajar) con un movimiento rítmico de la muñeca.',
+      tip: 'Un vibrato parejo y a tiempo suena mucho mejor que uno rápido y descontrolado. Empieza lento.',
+      d: N(70, 6) + W(66, 196, 12) + F(70, 3, '7') + W(66, 196, 80) },
+    { t: 'Trino', tag: 'tr~~~ · nota auxiliar entre paréntesis',
+      que: 'Alternar muy rápido entre dos notas usando solo hammer-ons y pull-offs.',
+      como: 'Toca el 5 una vez y repite hammer-on al 7 y pull-off al 5 de forma rápida y continua.',
+      tip: 'Primero lento y parejo; la velocidad llega sola con la práctica.',
+      d: N(70, 5) + T(70, 15, 'tr', 'middle', 12) + W(82, 196, 11) + F(70, 3, '5') + F(105, 3, '(7)') + T(70, 84, 'tr', 'middle', 12) + W(82, 196, 80) },
+  ],
+  derecha: [
+    { t: 'Dirección de púa', tag: '⊓ = abajo · V = arriba',
+      que: 'Símbolos que indican si la púa ataca hacia abajo o hacia arriba.',
+      como: '⊓ es púa hacia abajo (hacia el piso) y V es púa hacia arriba. Alternarlas (abajo-arriba) es la púa alternada, base de casi todo.',
+      tip: 'Otras variantes: downpicking (solo hacia abajo), economy picking y sweep picking (barrer varias cuerdas en un solo movimiento).',
+      d: [50, 90, 130, 170].map((x, i) => N(x, 5) + F(x, 3, '5') + (i % 2 === 0 ? `<path d="M${x - 4} 15V7H${x + 4}V15" fill="none" stroke="${A}" stroke-width="1.4"/>` : `<path d="M${x - 4} 7L${x} 16L${x + 4} 7" fill="none" stroke="${A}" stroke-width="1.4"/>`)).join('') },
+    { t: 'Palm mute', tag: 'P.M. - - - ┐',
+      que: 'Apagar parcialmente las cuerdas con la palma para lograr un sonido seco y percusivo.',
+      como: 'Apoya el borde de la palma de la mano derecha sobre las cuerdas, justo encima del puente, y toca normalmente.',
+      tip: 'Muy cerca del puente, la nota se oye; si te alejas mucho, se apaga por completo. La línea punteada indica hasta dónde dura.',
+      d: [50, 90, 130, 170].map(x => N(x, 0) + F(x, 4, '2')).join('') + T(22, 80, 'P.M.', 'start') + L(52, 77, 200, 77, 1) + L(200, 77, 200, 84) },
+    { t: 'Staccato', tag: 'Punto sobre o bajo la nota',
+      que: 'Tocar las notas cortas, separadas entre sí.',
+      como: 'Toca la nota y apágala enseguida: aflojando la presión de la mano izquierda o apoyando la mano derecha.',
+      tip: 'El punto solo indica duración, no cambia la nota ni el traste.',
+      d: [[60, 5], [110, 6], [160, 5]].map(([x, p]) => N(x, p) + `<circle cx="${x}" cy="${sy(p) - 9}" r="1.7" fill="${A}"/>` + F(x, 3, p === 5 ? '5' : '7')).join('') },
+    { t: 'Ghost note / dead note', tag: 'Ghost: (5) · Dead: x',
+      que: 'La ghost note es una nota muy suave, casi insinuada. La dead note (x) es un golpe apagado sin altura definida.',
+      como: 'Ghost: toca la nota con muy poca fuerza. Dead: apoya los dedos de la mano izquierda sobre la cuerda sin pisarla y ataca con la púa.',
+      tip: 'Las dos se usan para dar groove y ritmo, muy comunes en funk y en rasgueos.',
+      d: N(70, 5, 'n', { paren: true }) + N(140, 6, 'x') + F(70, 3, '(5)') + F(140, 3, 'x') },
+    { t: 'Let ring', tag: 'let ring - - - ┐',
+      que: 'Dejar sonar cada nota aunque ya estés tocando la siguiente.',
+      como: 'Pisa las notas del acorde y no levantes ningún dedo mientras arpegias; todas deben quedar sonando juntas.',
+      tip: 'Típico en arpegios de baladas y worship. Revisa que ningún dedo roce otra cuerda.',
+      d: N(50, 0) + N(90, 2) + N(130, 5) + N(170, 7) + F(50, 4, '2') + F(90, 3, '0') + F(130, 2, '1') + F(170, 1, '0') + T(22, 80, 'let ring', 'start') + L(72, 77, 200, 77, 1) + L(200, 77, 200, 84) },
+  ],
+  especiales: [
+    { t: 'Armónico natural', tag: 'Tab: <12> · Pentagrama: rombo',
+      que: 'Un sonido de campana que se obtiene sin pisar la cuerda contra el diapasón.',
+      como: 'Apoya el dedo muy suavemente sobre la cuerda, justo encima del traste 12 (no entre trastes), toca y retira el dedo.',
+      tip: 'También salen fácil en los trastes 7 y 5. En la tab pueden aparecer como <12> o con "Harm.".',
+      d: N(90, 9, 'd') + T(140, 14, 'harm.') + F(90, 3, '<12>') },
+    { t: 'Armónico artificial', tag: 'P.H. / A.H. (pinch harmonic)',
+      que: 'El "chillido" típico del rock y el metal.',
+      como: 'Toma la púa dejando asomar muy poco la punta, de modo que el pulgar roce la cuerda justo después de que la púa la ataque.',
+      tip: 'Funciona mejor con distorsión. Prueba en distintos puntos entre las pastillas: cada lugar da un armónico diferente.',
+      d: N(80, 6) + T(80, 16, 'P.H.') + F(80, 3, '7') + T(80, 82, 'P.H.') },
+    { t: 'Tapping', tag: 'T sobre la nota',
+      que: 'Usar un dedo de la mano derecha para "martillar" notas en el diapasón.',
+      como: 'Con el índice o el medio de la mano derecha, golpea el traste 12 (T), haz un pull-off hacia el 5 que pisa la mano izquierda y luego un hammer-on al 7.',
+      tip: 'Apaga las cuerdas que no usas para evitar ruidos. Es la técnica de las frases rapidísimas de Van Halen.',
+      d: N(50, 9) + N(105, 5) + N(160, 6) + sl(50, 9, 105, 5) + sl(105, 5, 160, 6) + F(50, 3, '12') + F(78, 3, 'p', A) + F(105, 3, '5') + F(132, 3, 'h', A) + F(160, 3, '7') + T(50, 84, 'T') },
+  ],
+};
+
+for (const [id, lista] of Object.entries(TECNICAS)) {
+  document.getElementById(id).innerHTML = lista.map(c => `
+    <article class="card">
+      <h3>${c.t}</h3>
+      <span class="tag">${c.tag}</span>
+      <svg viewBox="0 0 220 142" role="img" aria-label="${c.t} en pentagrama y tablatura">${base()}${c.d}</svg>
+      <p><strong>Qué es:</strong> ${c.que}</p>
+      <p class="how"><strong>Cómo se hace:</strong> ${c.como}</p>
+      <p class="tip">${c.tip}</p>
+    </article>`).join('');
+}
+</script>
+</body>
+</html>
